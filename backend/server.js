@@ -7,7 +7,6 @@ import cloudinaryframework from 'cloudinary';
 import multer from 'multer';
 import cloudinaryStorage from 'multer-storage-cloudinary';
 import File from './models/File';
-import Message from './models/Message';
 
 const cloudinary = cloudinaryframework.v2;
 

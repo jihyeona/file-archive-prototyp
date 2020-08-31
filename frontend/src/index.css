@@ -13,31 +13,14 @@ code {
     monospace;
 }
 
-#mainnavbar {
-  background-color: #fafafa !important;
-  position: fixed;
-  top: 0;
-  width: 90%;
-  z-index: 10;
-  margin-bottom: 30px;
-  padding-left: 60px;
-  padding-right: 60px;
-}
-
-#subnavbar {
-  justify-content: space-evenly !important;
-}
-
 svg {
   width: 1.8em;
   height: 1.8em;
   display: inline-flex;
 }
-svg:hover {
-  /* width: 2.5em; 
-  height: auto; */
+/* svg:hover {
   transform: scale(1.5, 1.5);
-}
+} */
 
 @keyframes MovingBackground {
   0% {

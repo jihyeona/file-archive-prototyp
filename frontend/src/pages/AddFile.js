@@ -20,7 +20,7 @@ export const AddFile = () => {
     dispatch(addfile(description, userName, fileInput));
     setUserName('');
     setDescription('');
-    history.push('/home');
+    history.push('/');
   };
 
   return (

@@ -8,7 +8,6 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { applyMiddleware, compose } from '@reduxjs/toolkit';
-import HowToUse from 'pages/HowToUse';
 
 const saveToLocalStorage = (state) => {
   try {
@@ -51,7 +50,7 @@ export const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/home" exact>
+          <Route path="/" exact>
             <HomePage />
           </Route>
           <Route path="/upload" exact>

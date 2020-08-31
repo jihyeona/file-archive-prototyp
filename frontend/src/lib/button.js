@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { MovingBackground } from 'lib/headline';
-import { ImgWrapper } from 'lib/container';
 
 export const AnimationButton = styled.button`
   background-size: 200% 200%;
@@ -35,63 +34,7 @@ export const AnimationButton = styled.button`
     margin: 2em;
   }
 `;
-export const Plus = styled.img`
-  align-self: center;
-`;
-export const ReadButton = styled.button`
-  height: 1.5em;
-  width: 1.5em;
-  border: none;
-  color: gray;
-  flex-direction: row;
-  display: flex;
-`;
-export const ProfileImgButton = styled.button`
-  position: absolute;
-  display: none;
-  top: 30%;
-  z-index: 5;
-  color: white;
-  background: none;
-  border: none;
-  padding: 10px;
-  font-size: 12px;
-  overflow-wrap: break-word;
-  cursor: pointer;
-  ${ImgWrapper}:hover & {
-    display: block;
-  }
-  @media (min-width: 668px) {
-    position: absolute;
-    display: none;
-    top: 15%;
-    margin-left: 2.4em;
-    z-index: 5;
-    color: white;
-    background: none;
-    border: none;
-    padding: 10px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-`;
-export const LinkText = styled.button`
-  position: absolute;
-  top: 20%;
-  z-index: 5;
-  color: white;
-  background: none;
-  border: none;
-  font-size: 12px;
-  cursor: pointer;
-  ${ImgWrapper}:hover & {
-    display: block;
-  }
-  @media (min-width: 668px) {
-    top: 40%;
-    left: 20%;
-  }
-`;
+
 export const ButtonInput = styled.button`
   font: 400 13.3333px Arial;
   padding: 1px 6px;

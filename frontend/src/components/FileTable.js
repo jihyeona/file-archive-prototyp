@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTable, useSortBy, usePagination, useRowSelect } from 'react-table';
-import { Button } from 'lib/button';
 import { deletefile } from '../reducers/file';
 import { AiOutlineFileJpg } from 'react-icons/ai';
 import { FaRegFilePdf } from 'react-icons/fa';
@@ -88,6 +87,9 @@ export const FileTable = ({ columns, data }) => {
             <div>
               {console.log(row.original.fileName.split('.').pop())}
               {row.original.fileName.split('.').pop() === 'jpg' && (
+                <AiOutlineFileJpg />
+              )}
+              {row.original.fileName.split('.').pop() === 'jpeg' && (
                 <AiOutlineFileJpg />
               )}
               {row.original.fileName.split('.').pop() === 'png' && (
@@ -201,18 +203,18 @@ export const FileTable = ({ columns, data }) => {
           ))}
         </select>
         <Link to={'/upload'}>
-          <Button type="submit" title="Upload">
+          <button type="submit" title="Upload">
             Upload
-          </Button>
+          </button>
         </Link>
         {uploadId && (
-          <Button title="Delete" onClick={handleDeleteClick()}>
+          <button title="Delete" onClick={handleDeleteClick}>
             Delete
-          </Button>
+          </button>
         )}
         {fileUrl && (
           <a href={fileUrl}>
-            <Button title="Open">Open</Button>
+            <button title="Open">Open</button>
           </a>
         )}
       </div>

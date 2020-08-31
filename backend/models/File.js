@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
 
-const File = mongoose.Schema({
+const File = mongoose.model('File', {
   description: {
     type: String,
-    required: true,
   },
   userName: {
     type: String,
     required: true,
   },
+  fileName: String,
   imageUrl: String,
-  imageId: String,
   createdAt: {
     type: Date,
     default: () => new Date(),

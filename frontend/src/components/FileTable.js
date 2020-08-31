@@ -1,73 +1,66 @@
-// import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { upvote, downvote, deleteitem } from '../reducers/user';
-// import { Thumbnail } from 'lib/images';
-// import { ReadButton } from 'lib/button';
-// import { ItemText, ItemDescription, ItemContainer } from 'lib/container';
-// import { FiHeart, FiTrash } from 'react-icons/fi';
+import React from 'react';
+import Table from 'react-bootstrap/Table';
+import DataTable from 'react-data-table-component';
+import { useTable } from 'react-table';
 
-// export const FileTable = ({
-//   name,
-//   description,
-//   imageUrl,
-//   _id,
-//   likes,
-//   userId,
-//   pollId,
-// }) => {
-//   const dispatch = useDispatch();
-//   const loggedInUserId = useSelector((store) => store.user.login.userId);
-//   const itemCreatorId = userId;
-//   const itemId = _id;
-//   const manyLikes = likes.length;
-//   const upvoted = likes.some((like) => like.userId === loggedInUserId);
-//   const [isUpvoted, setIsUpvoted] = useState(upvoted);
-//   const [open, setOpen] = useState(false);
-//   const maxLength = 100;
+export const FileTable = ({ columns, data }) => {
+  const {
+    getTableProps, // table props from react-table
+    getTableBodyProps, // table body props from react-table
+    headerGroups, // headerGroups, if your table has groupings
+    rows, // rows for the table based on the data passed
+    prepareRow, // Prepare the row (this function needs to be called for each row before getting the row props)
+  } = useTable({
+    columns,
+    data,
+  });
 
-//   const handleUpvote = (event) => {
-//     event.preventDefault();
-//     if (upvoted) {
-//       dispatch(downvote(pollId, itemId, loggedInUserId));
-//     } else if (!upvoted) {
-//       dispatch(upvote(loggedInUserId, itemId));
-//     }
-//     setIsUpvoted(!isUpvoted);
-//   };
-
-//   const handleDelete = (e) => {
-//     e.preventDefault();
-//     dispatch(deleteitem(itemId));
-//   };
-
-//   return (
-//     <ItemContainer>
-//       <Thumbnail src={imageUrl} alt={name} />
-//       <ItemText>
-//         <FiHeart
-//           onClick={(event) => handleUpvote(event)}
-//           style={{ fill: upvoted ? 'red' : 'none' }}
-//         ></FiHeart>
-//         <h4>{manyLikes} likes</h4>
-//         {loggedInUserId === itemCreatorId && (
-//           <FiTrash onClick={(e) => handleDelete(e)}>delete the item</FiTrash>
-//         )}
-//       </ItemText>
-//       <ItemDescription>
-//         <h4>{name}</h4>
-//         {!open && (
-//           <p>
-//             {description.length >= maxLength
-//               ? description.slice(0, 100) + '...'
-//               : `${description}`}
-//           </p>
-//         )}
-//         {open && <p>{description}</p>}
-//         {!open && description.length >= maxLength && (
-//           <ReadButton onClick={() => setOpen((prev) => !prev)}>more</ReadButton>
-//         )}
-//       </ItemDescription>
-//     </ItemContainer>
-//   );
-// };
-// export default FileTable;
+  return (
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row, i) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+    // <table>
+    //   <thead>
+    //     <tr>
+    //       <th>Type</th>
+    //       <th>File Name</th>
+    //       <th>Description</th>
+    //       <th>Uploaded By</th>
+    //       <th>Uploaded At</th>
+    //     </tr>
+    //   </thead>
+    //   <tbody>
+    //     <tr>
+    //       <td>icon</td>
+    //       <a href={imageUrl}>
+    //         <td>{fileName}</td>
+    //       </a>
+    //       <td>{description}</td>
+    //       <td>{userName}</td>
+    //       <td>{uploadedAt}</td>
+    //     </tr>
+    //   </tbody>
+    // </table>
+  );
+};
+export default FileTable;

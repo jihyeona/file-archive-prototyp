@@ -14,8 +14,6 @@ export const AddFile = () => {
   const fileInput = useRef();
   const [description, setDescription] = useState('');
   const [userName, setUserName] = useState('');
-  // const { pollId } = useParams();
-  // const userId = useSelector((store) => store.user.login.userId);
 
   const handleItemSubmit = (e) => {
     e.preventDefault();

@@ -1,15 +1,15 @@
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f2f2f2;
+  background-color: white;
   color: #232b2b;
   height: 100vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -21,7 +21,7 @@ code {
   z-index: 10;
   margin-bottom: 30px;
   padding-left: 60px;
-  padding-right: 60px; 
+  padding-right: 60px;
 }
 
 #subnavbar {
@@ -30,7 +30,7 @@ code {
 
 svg {
   width: 1.8em;
-  height: 1.8em; 
+  height: 1.8em;
   display: inline-flex;
 }
 svg:hover {
@@ -40,19 +40,25 @@ svg:hover {
 }
 
 @keyframes MovingBackground {
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @media (min-width: 668px) and (max-width: 1023px) {
   #votelottie {
-     width: 230px;
-     height: 230px;
-   }
-   #mainnavbar {
+    width: 230px;
+    height: 230px;
+  }
+  #mainnavbar {
     width: 85%;
-   }
+  }
 }
 
 @media (min-width: 1024px) {

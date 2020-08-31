@@ -48,7 +48,8 @@ const app = express();
 
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Start defining your routes here
 app.get('/', (req, res) => {
@@ -59,7 +60,7 @@ app.get('/', (req, res) => {
 app.get('/files', async (req, res) => {
   const existingFiles = await File.find()
     .sort({ createdAt: 'desc' })
-    .limit(5)
+    .limit(50)
     .exec();
   if (existingFiles) {
     res.status(201).json(existingFiles);
@@ -72,14 +73,14 @@ app.get('/files', async (req, res) => {
 app.post('/files', parser.single('fileimage'), async (req, res) => {
   console.log('posting file into to API...');
   try {
-    const newFile = new File({
+    const file = new File({
       description: req.body.description,
       userName: req.body.userName,
       imageUrl: req.file.path,
       fileName: req.file.originalname,
     });
     console.log(`testing ... ${req.file}`);
-    const saved = await newFile.save();
+    const saved = await file.save();
     res.status(201).json({
       description: saved.description,
       userName: saved.userName,

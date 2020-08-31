@@ -12,6 +12,7 @@ import { FabPoll } from '../components/FabPoll';
 import { FileTable } from '../components/FileTable';
 import { ThemeCard } from '../components/FileTable';
 import moment from 'moment';
+import { Styles } from '../lib/table';
 
 export const HomePage = () => {
   const dispatch = useDispatch();
@@ -47,25 +48,9 @@ export const HomePage = () => {
   ]);
 
   return (
-    <>
-      <PollTitle>File Archive</PollTitle>
-      <section>{files && <FileTable columns={columns} data={files} />}</section>
-
-      {/* {files.length === 0 && (
-        <>
-          <AddItemLottie />
-          <PollText>
-            Upload your file with the button on the right bottom.
-          </PollText>
-        </>
-      )}
-      {files.length !== 0 && (
-        <>
-          <VoteLottie id="votelottie" />
-        </>
-      )} */}
-      <FabPoll />
-    </>
+    <div>
+      <Styles>{files && <FileTable columns={columns} data={files} />}</Styles>
+    </div>
   );
 };
 

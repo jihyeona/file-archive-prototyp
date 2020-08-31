@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+import { addfile } from '../reducers/file';
 import { Input, PollForm } from '../lib/form';
 import { AddPollContainer } from '../lib/container';
 import { PollText } from '../lib/headline';
-import { Button } from '../lib/button';
-import { addfile } from 'reducers/file';
-import { useParams, useHistory } from 'react-router-dom';
+import { FormButton } from '../lib/button';
 import { AddPollLottie } from '../components/AddPollLottie';
 
 export const AddFile = () => {
@@ -15,18 +15,18 @@ export const AddFile = () => {
   const [description, setDescription] = useState('');
   const [userName, setUserName] = useState('');
 
-  const handleItemSubmit = (e) => {
+  const handleFileSubmit = (e) => {
     e.preventDefault();
     dispatch(addfile(description, userName, fileInput));
     setUserName('');
     setDescription('');
-    history.push(`/home`);
+    history.push('/home');
   };
 
   return (
     <AddPollContainer>
       <AddPollLottie />
-      <PollForm onSubmit={handleItemSubmit}>
+      <PollForm onSubmit={handleFileSubmit}>
         <PollText>Upload your file here.</PollText>
         <Input
           type="text"
@@ -34,7 +34,6 @@ export const AddFile = () => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Description"
           maxlength="150"
-          required
         />
         <Input
           type="text"
@@ -47,9 +46,9 @@ export const AddFile = () => {
           <input type="file" ref={fileInput} />
         </label>
 
-        <Button type="submit" title="Submit">
+        <FormButton type="submit" title="Upload">
           Upload
-        </Button>
+        </FormButton>
       </PollForm>
     </AddPollContainer>
   );

@@ -55,49 +55,13 @@ export const FileTable = ({ columns, data }) => {
     useRowSelect,
     (hooks) => {
       hooks.visibleColumns.push((columns) => [
-        // Let's make a column for selection
-        {
-          id: 'fileExtension',
-          Header: () => <div>File Type</div>,
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          Cell: ({ row }) => (
-            <div>
-              {row.original.fileName.split('.').pop() === 'jpg' && (
-                <AiOutlineFileJpg />
-              )}
-              {row.original.fileName.split('.').pop() === 'jpeg' && (
-                <AiOutlineFileJpg />
-              )}
-              {row.original.fileName.split('.').pop() === 'png' && (
-                <FaRegFileImage />
-              )}
-              {row.original.fileName.split('.').pop() === 'pdf' && (
-                <FaRegFilePdf />
-              )}
-              {row.original.fileName.split('.').pop() === 'xml' && (
-                <FaRegFileAlt />
-              )}
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    },
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        // Let's make a column for selection
         {
           id: 'selection',
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
           Header: ({ getToggleAllRowsSelectedProps }) => (
             <div>
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
             </div>
           ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
           Cell: ({ row }) => {
             if (
               rows.filter((row) => row.isSelected).length < 1 ||
@@ -124,15 +88,40 @@ export const FileTable = ({ columns, data }) => {
         ...columns,
       ]);
     },
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        {
+          id: 'fileExtension',
+          Header: () => <div>File Type</div>,
+          Cell: ({ row }) => (
+            <div>
+              {row.original.fileName.split('.').pop() === 'jpg' && (
+                <AiOutlineFileJpg />
+              )}
+              {row.original.fileName.split('.').pop() === 'jpeg' && (
+                <AiOutlineFileJpg />
+              )}
+              {row.original.fileName.split('.').pop() === 'png' && (
+                <FaRegFileImage />
+              )}
+              {row.original.fileName.split('.').pop() === 'pdf' && (
+                <FaRegFilePdf />
+              )}
+              {row.original.fileName.split('.').pop() === 'xml' && (
+                <FaRegFileAlt />
+              )}
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    },
   );
 
   const selectedFileInfo = selectedFlatRows.map((d) => d.original);
   const selectedFileInfoArr = selectedFileInfo[0];
   const uploadId = selectedFileInfoArr ? selectedFileInfoArr._id : '';
   const fileUrl = selectedFileInfoArr ? selectedFileInfoArr.imageUrl : '';
-  // console.log(selectedFileInfoArr);
-  // console.log(uploadId);
-  // console.log(fileUrl);
 
   const handleDeleteClick = () => {
     dispatch(deletefile(uploadId));

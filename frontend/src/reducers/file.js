@@ -24,7 +24,7 @@ export const file = createSlice({
 
 //Thunks
 export const getfiles = () => {
-  const FILE_URL = 'http://localhost:8080/files';
+  const FILE_URL = 'https://file-archive.herokuapp.com/files';
   return (dispatch) => {
     fetch(FILE_URL, {
       method: 'GET',
@@ -47,7 +47,7 @@ export const getfiles = () => {
 };
 
 export const addfile = (description, userName, fileInput) => {
-  const FILE_URL = 'http://localhost:8080/files';
+  const FILE_URL = 'https://file-archive.herokuapp.com/files';
   const formData = new FormData();
   formData.append('fileimage', fileInput.current.files[0]);
   formData.append('description', description);
@@ -78,7 +78,7 @@ export const addfile = (description, userName, fileInput) => {
 };
 
 export const deletefile = (uploadId) => {
-  const MYFILE_URL = `http://localhost:8080/files/${uploadId}`;
+  const MYFILE_URL = `https://file-archive.herokuapp.com/files/${uploadId}`;
   return (dispatch) => {
     fetch(MYFILE_URL, {
       method: 'DELETE',

@@ -4,6 +4,7 @@ import { file, getfiles } from '../reducers/file';
 import { FileTable } from '../components/FileTable';
 import moment from 'moment';
 import { Styles } from '../lib/table';
+import { HomeDiv } from '../lib/container'
 
 export const HomePage = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,9 @@ export const HomePage = () => {
   ]);
 
   return (
-    <div>
+    <HomeDiv>
       <Styles>{files && <FileTable columns={columns} data={files} />}</Styles>
-    </div>
+    </HomeDiv>
   );
 };
 

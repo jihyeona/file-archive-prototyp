@@ -6,6 +6,7 @@ import { deletefile } from '../reducers/file';
 import { AiOutlineFileJpg } from 'react-icons/ai';
 import { FaRegFilePdf } from 'react-icons/fa';
 import { FaRegFileImage } from 'react-icons/fa';
+import { FaRegFileAlt } from 'react-icons/fa';
 
 export const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -56,6 +57,37 @@ export const FileTable = ({ columns, data }) => {
       hooks.visibleColumns.push((columns) => [
         // Let's make a column for selection
         {
+          id: 'fileExtension',
+          Header: () => <div>File Type</div>,
+          // The cell can use the individual row's getToggleRowSelectedProps method
+          // to the render a checkbox
+          Cell: ({ row }) => (
+            <div>
+              {row.original.fileName.split('.').pop() === 'jpg' && (
+                <AiOutlineFileJpg />
+              )}
+              {row.original.fileName.split('.').pop() === 'jpeg' && (
+                <AiOutlineFileJpg />
+              )}
+              {row.original.fileName.split('.').pop() === 'png' && (
+                <FaRegFileImage />
+              )}
+              {row.original.fileName.split('.').pop() === 'pdf' && (
+                <FaRegFilePdf />
+              )}
+              {row.original.fileName.split('.').pop() === 'xml' && (
+                <FaRegFileAlt />
+              )}
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    },
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        // Let's make a column for selection
+        {
           id: 'selection',
           // The header can use the table's getToggleAllRowsSelectedProps method
           // to render a checkbox
@@ -97,35 +129,6 @@ export const FileTable = ({ columns, data }) => {
         ...columns,
       ]);
     },
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        // Let's make a column for selection
-        {
-          id: 'fileExtension',
-          Header: () => <div>File Type</div>,
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          Cell: ({ row }) => (
-            <div>
-              {console.log(row.original.fileName.split('.').pop())}
-              {row.original.fileName.split('.').pop() === 'jpg' && (
-                <AiOutlineFileJpg />
-              )}
-              {row.original.fileName.split('.').pop() === 'jpeg' && (
-                <AiOutlineFileJpg />
-              )}
-              {row.original.fileName.split('.').pop() === 'png' && (
-                <FaRegFileImage />
-              )}
-              {row.original.fileName.split('.').pop() === 'pdf' && (
-                <FaRegFilePdf />
-              )}
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
   );
 
   const selectedFileInfo = selectedFlatRows.map((d) => d.original);

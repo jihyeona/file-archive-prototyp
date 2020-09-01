@@ -13,3 +13,10 @@ export const AddPollContainer = styled.div`
     margin-top: 2em;
   }
 `;
+
+export const HomeDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+`

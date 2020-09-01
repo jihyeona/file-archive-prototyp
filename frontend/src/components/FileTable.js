@@ -66,11 +66,33 @@ export const FileTable = ({ columns, data }) => {
           ),
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
+          // Cell: ({ row }) => (
+          //   <div>
+          //     <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+          //   </div>
+          // ),
+          Cell: ({ row }) => {
+            if (
+              rows.filter((row) => row.isSelected).length < 1 ||
+              row.isSelected
+            ) {
+              return (
+                <div>
+                  <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+                </div>
+              );
+            } else {
+              return (
+                <div>
+                  <IndeterminateCheckbox
+                    checked={false}
+                    readOnly
+                    style={row.getToggleRowSelectedProps().style}
+                  />
+                </div>
+              );
+            }
+          },
         },
         ...columns,
       ]);
@@ -214,7 +236,7 @@ export const FileTable = ({ columns, data }) => {
         )}
         {fileUrl && (
           <a href={fileUrl}>
-            <button title="Open">Open</button>
+            <button title="Download">Download</button>
           </a>
         )}
       </div>

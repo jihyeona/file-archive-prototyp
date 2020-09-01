@@ -98,11 +98,6 @@ export const FileTable = ({ columns, data }) => {
           ),
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
-          // Cell: ({ row }) => (
-          //   <div>
-          //     <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-          //   </div>
-          // ),
           Cell: ({ row }) => {
             if (
               rows.filter((row) => row.isSelected).length < 1 ||
@@ -135,12 +130,11 @@ export const FileTable = ({ columns, data }) => {
   const selectedFileInfoArr = selectedFileInfo[0];
   const uploadId = selectedFileInfoArr ? selectedFileInfoArr._id : '';
   const fileUrl = selectedFileInfoArr ? selectedFileInfoArr.imageUrl : '';
-  console.log(selectedFileInfoArr);
-  console.log(uploadId);
-  console.log(fileUrl);
+  // console.log(selectedFileInfoArr);
+  // console.log(uploadId);
+  // console.log(fileUrl);
 
   const handleDeleteClick = () => {
-    console.log('dispatching the deletefile thunk..');
     dispatch(deletefile(uploadId));
   };
 
@@ -248,17 +242,4 @@ export const FileTable = ({ columns, data }) => {
 };
 export default FileTable;
 
-// <pre>
-//       <code>
-//         {JSON.stringify(
-//           {
-//             selectedRowIds: selectedRowIds,
-//             'selectedFlatRows[].original': selectedFlatRows.map(
-//               (d) => d.original
-//             ),
-//           },
-//           null,
-//           2
-//         )}
-//       </code>
-//     </pre>
+

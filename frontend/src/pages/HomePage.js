@@ -11,8 +11,6 @@ export const HomePage = () => {
     dispatch(getfiles());
   }, [dispatch]);
   const files = useSelector((store) => store.file.login.existingFiles);
-  console.log(files);
-  // const uploadedAt = moment(createdAt).format('MMMM Do YYYY, h:mm:ss a');
 
   const columns = useMemo(() => [
     {

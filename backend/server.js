@@ -24,7 +24,6 @@ const storage = cloudinaryStorage({
     folder: 'uploads',
     allowedFormats: ['jpg', 'png', 'jpeg', 'pdf', 'xml'],
     transformation: [{ width: 500, height: 500, crop: 'limit' }],
-    // public_id: (req, file) => 'computed-filename-using-request',
     use_filename: true,
     unique_filename: true,
     flags: 'attachment',
@@ -73,7 +72,6 @@ app.get('/files', async (req, res) => {
 
 // this is the endpoint to add a new file
 app.post('/files', parser.single('fileimage'), async (req, res) => {
-  console.log('posting file into to API...');
   try {
     const file = new File({
       description: req.body.description,
@@ -119,85 +117,6 @@ app.delete('/files/:uploadId', async (req, res) => {
     res.status(400).json({ errors: err.errors });
   }
 });
-
-// this is the endpoint to update password
-// app.put('/password/:userId', authenticateUser);
-// app.put('/password/:userId', async (req, res) => {
-//   try {
-//     const { userId } = req.params;
-//     const { oldPassword, newPassword } = req.body;
-//     const user = await User.findOne({ _id: userId });
-//     console.log(user);
-//     if (user && bcrypt.compareSync(oldPassword, user.password)) {
-//       console.log('comparing the password...');
-//       const newUser = await User.findOneAndUpdate(
-//         { _id: userId },
-//         { password: bcrypt.hashSync(newPassword) },
-//         { new: true }
-//       );
-//       res.json(newUser);
-//     } else {
-//       res.status(404).json({ notFound: true });
-//     }
-//   } catch (err) {
-//     res.status(400).json({ err: err });
-//   }
-// });
-
-// use this for renaming the files
-// app.put('/files/:id', parser.single('image'), async (req, res) => {
-//   try {
-//     const user = await User.findOneAndUpdate(
-//       { _id: req.user._id },
-//       { profileImage: req.file.path },
-//       { new: true }
-//     );
-//     res.json(user);
-//   } catch (err) {
-//     res.status(400).json({ errors: err.errors });
-//   }
-// });
-
-// // testing to get all the messages
-// app.get('/messages', async (req, res) => {
-//   console.log('fetching all the messages...');
-//   const existingMessages = await Message.find()
-//     .sort({ createdAt: 'desc' })
-//     .limit(5)
-//     .exec();
-//   if (existingMessages) {
-//     res.status(201).json(existingMessages);
-//   } else {
-//     res.status(401).json({ message: 'Could not find existing files' });
-//   }
-// });
-// // this is testing endpoint to add a string
-// app.post('/messages', async (req, res) => {
-//   try {
-//     const { message } = req.body;
-//     const newMessage = new Message({ message });
-//     const saved = await newMessage.save();
-//     res.status(201).json({
-//       message: saved.message,
-//       messageId: saved._id,
-//     });
-//   } catch (err) {
-//     res
-//       .status(400)
-//       .json({ message: 'Could not post message', errors: err.errors });
-//   }
-// });
-
-// // testing for deleting a message
-// app.delete('/messages/:messageId', async (req, res) => {
-//   try {
-//     const { messageId } = req.params;
-//     const deletedMessage = await Message.findOneAndDelete({ _id: messageId });
-//     res.status(201).json(deletedMessage);
-//   } catch (err) {
-//     res.status(400).json({ errors: err.errors });
-//   }
-// });
 
 // Start the server
 app.listen(port, () => {

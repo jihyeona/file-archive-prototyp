@@ -56,10 +56,6 @@ export const addfile = (description, userName, fileInput) => {
     fetch(FILE_URL, {
       method: 'POST',
       body: formData,
-      // headers: {
-      //   'Content-Type': 'application/x-www-form-urlencoded',
-      //   'Content-Type': 'application/json',
-      // },
     })
       .then(console.log('posted file info to API...'))
       .then((res) => {

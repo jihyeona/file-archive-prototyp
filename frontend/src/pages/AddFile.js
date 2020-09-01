@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addfile } from '../reducers/file';
 import { Input, PollForm } from '../lib/form';
 import { AddPollContainer } from '../lib/container';

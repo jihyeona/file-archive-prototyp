@@ -24,8 +24,9 @@ const storage = cloudinaryStorage({
     folder: 'uploads',
     allowedFormats: ['jpg', 'png', 'jpeg', 'pdf', 'xml'],
     transformation: [{ width: 500, height: 500, crop: 'limit' }],
+    // public_id: (req, file) => 'computed-filename-using-request',
     use_filename: true,
-    unique_filename: false,
+    unique_filename: true,
     flags: 'attachment',
   },
 });
